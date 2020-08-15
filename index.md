@@ -1,5 +1,3 @@
-# Cookbook
-
 A collection of recipes.
 
 ## Table of Contents
