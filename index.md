@@ -9,3 +9,5 @@ A collection of recipes.
 
 ### Recipe 2
 
+### Recipe 3
+
