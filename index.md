@@ -11,3 +11,5 @@ A collection of recipes.
 
 ### Recipe 3
 
+- 2 Orange
+- 1 Pineapple
