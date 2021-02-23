@@ -8,3 +8,4 @@ A collection of recipes.
 ### Recipe 1
 
 ### Recipe 2
+
