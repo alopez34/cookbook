@@ -15,15 +15,17 @@ def generateOutputFileLines(templateFileLines, numOpenFiles):
     # empty array to output file lines
     outputFileLines = []
 
+    currentPendingFiles = '<h3 id="recipe-2">Pending Files: '+str(numOpenFiles)+'</h3>'
+
     for line in templateFileLines:
-        if ("#var2" in line):
-            line = line.replace('#var2',str(numOpenFiles))
+        if ('<h3 id="recipe-2">' in line):
+            line = currentPendingFiles
             outputFileLines.append(line)
         else:
             outputFileLines.append(line)
 
     return outputFileLines
-
+    
 def getNumFiles():
     numFilesFile = open('numFiles.txt','r')
     numFiles = numFilesFile.readline()
@@ -34,38 +36,16 @@ def writeOutputFile(outputFileLines):
 
     outFile = open('index.html', 'w+')
     outFile.writelines(outputFileLines)
-    outFile.close()
-
-def gitPush():
-    try:
-        repo = Repo('.')
-        repo.git.add(update=True)
-        repo.index.commit('COMMIT_MESSAGE')
-        origin = repo.remote('origin')
-        origin.push()
-    except:
-        print('Some error occured while pushing the code')  
+    outFile.close() 
 
 def main():
 
-    #get the number of files from numFiles.txt
     numFiles = getNumFiles()
-
-    #get template file
-    templateFile = open ('template.html','r')
-
-    #get template file lines
+    templateFile = open ('index.html','r')
     templateFileLines = readTemplateToList(templateFile)
-
-    #close template file
     templateFile.close()
-
-    #generate output file lines
     outputFileLines = generateOutputFileLines(templateFileLines,numFiles)
-
-    #write file to index file
     writeOutputFile(outputFileLines)
     
-    gitPush()
 
 main()
